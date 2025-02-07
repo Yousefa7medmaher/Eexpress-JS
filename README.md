@@ -1,6 +1,6 @@
 # Express.js Practice Repository
 
-![Express.js](https://images.app.goo.gl/9vvJYJPJvSDopEeQ6)
+![Express.js](express.png)
  
 ## Introduction
 Welcome to my **Express.js** practice repository! 🚀
