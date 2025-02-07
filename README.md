@@ -10,7 +10,7 @@ In this repository, I showcase all the exercises I created to learn **Express.js
 
 ## What is Express.js?
 **Express.js** is a minimal and flexible **Node.js web application framework** that provides a robust set of features to build web and mobile applications. It simplifies handling HTTP requests, routing, and middleware integration.
-
+![Express.js](img2.png)
 ### Key Features of Express.js:
 - Fast and lightweight
 - Middleware support
