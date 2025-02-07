@@ -6,7 +6,7 @@
 Welcome to my **Express.js** practice repository! 🚀
 
 In this repository, I showcase all the exercises I created to learn **Express.js**, enhance my knowledge, and practice my skills. This includes various implementations of endpoints, middleware, request handling, and integrations with tools like **Postman**.
-
+![Express.js](Express.js Practice Repository - visual selection.png)
 
 ## What is Express.js?
 **Express.js** is a minimal and flexible **Node.js web application framework** that provides a robust set of features to build web and mobile applications. It simplifies handling HTTP requests, routing, and middleware integration.
@@ -76,7 +76,7 @@ Follow these steps to run the project locally:
    node index.js
    ```
 5. Open **Postman** or your browser and test the endpoints.
-
+![Express.js](Express.js Practice Repository - visual selection (2).png)
 ## Conclusion
 This repository serves as a learning space for mastering **Express.js** and API development. Feel free to explore, contribute, or suggest improvements! 🚀
 
