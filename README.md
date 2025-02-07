@@ -76,7 +76,7 @@ Follow these steps to run the project locally:
    node index.js
    ```
 5. Open **Postman** or your browser and test the endpoints.
-![Express.js](Express.js Practice Repository - visual selection (2).png)
+![Express.js](img1.png)
 ## Conclusion
 This repository serves as a learning space for mastering **Express.js** and API development. Feel free to explore, contribute, or suggest improvements! 🚀
 
