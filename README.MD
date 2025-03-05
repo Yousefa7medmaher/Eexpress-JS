@@ -18,8 +18,8 @@ This project implements a simple CRUD (Create, Read, Update, Delete) API for man
 ## Installation
 ### 1. Clone the repository
 ```bash
-git clone <repository_url>
-cd <repository_folder>
+git clone  https://github.com/Yousefa7medmaher/Eexpress-JS/tree/crud 
+cd crud
 ```
 ### 2. Install dependencies
 ```bash
