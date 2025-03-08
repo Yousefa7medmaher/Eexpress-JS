@@ -1,9 +1,11 @@
-# MVC To-Do App
+## MVC To-Do App
 
 ## Overview
-This project is a **To-Do List Application** built using the **MVC (Model-View-Controller) architecture**. The app allows users to manage their tasks efficiently, including adding, updating, retrieving, and marking tasks as completed.
+
+This project is a **To-Do List Application** built using the **MVC (Model-View-Controller) architecture**. The app allows users to manage their tasks efficiently, including adding, updating, retrieving, deleting, and marking tasks as completed.
 
 ## Features
+
 - Add new tasks with a title and description.
 - Update existing tasks.
 - Retrieve a specific task by ID.
@@ -12,12 +14,14 @@ This project is a **To-Do List Application** built using the **MVC (Model-View-C
 - Mark tasks as completed.
 
 ## Technologies Used
+
 - **Backend**: Node.js, Express.js
 - **Database**: MySQL
 - **ORM/Query Execution**: MySQL2
 - **Architecture**: MVC (Model-View-Controller)
 
 ## Database Schema
+
 ```sql
 CREATE DATABASE TODOLIST;
 USE TODOLIST;
@@ -35,9 +39,11 @@ CREATE TABLE TASKS (
 ## API Endpoints
 
 ### 1. Add a Task
-**Endpoint:** `POST http://localhost:5000/todolist/addtask `
+
+**Endpoint:** `POST http://localhost:5000/todolist/addtask`
 
 #### Request Body
+
 ```json
 {
     "Title": "Task Title",
@@ -46,6 +52,7 @@ CREATE TABLE TASKS (
 ```
 
 #### Response
+
 ```json
 {
     "success": true,
@@ -55,9 +62,11 @@ CREATE TABLE TASKS (
 ```
 
 ### 2. Update a Task
-**Endpoint:** `PUT  http://localhost:5000/todolist/UpdateTask `
+
+**Endpoint:** `PUT http://localhost:5000/todolist/UpdateTask`
 
 #### Request Body
+
 ```json
 {
     "id": 1,
@@ -67,6 +76,7 @@ CREATE TABLE TASKS (
 ```
 
 #### Response
+
 ```json
 {
     "success": true,
@@ -75,9 +85,11 @@ CREATE TABLE TASKS (
 ```
 
 ### 3. Get Task by ID
-**Endpoint:** `GET /tasks/:id`
+
+**Endpoint:** `GET http://localhost:5000/todolist/GetTaskById/:id`
 
 #### Response
+
 ```json
 {
     "success": true,
@@ -94,9 +106,11 @@ CREATE TABLE TASKS (
 ```
 
 ### 4. Get All Tasks
-**Endpoint:** `GET  http://localhost:5000/todolist/GetAllTasks `
+
+**Endpoint:** `GET http://localhost:5000/todolist/GetAllTasks`
 
 #### Response
+
 ```json
 {
     "success": true,
@@ -114,10 +128,25 @@ CREATE TABLE TASKS (
 }
 ```
 
-### 5. Mark Task as Completed
-**Endpoint:** `PUT /tasks/complete`
+### 5. Delete a Task
+
+**Endpoint:** `DELETE http://localhost:5000/todolist/DeleteTask/:id`
+
+#### Response
+
+```json
+{
+    "success": true,
+    "message": "Task deleted successfully"
+}
+```
+
+### 6. Mark Task as Completed
+
+**Endpoint:** `PUT http://localhost:5000/todolist/CompleteTask`
 
 #### Request Body
+
 ```json
 {
     "id": 1
@@ -125,6 +154,7 @@ CREATE TABLE TASKS (
 ```
 
 #### Response
+
 ```json
 {
     "success": true,
@@ -133,39 +163,39 @@ CREATE TABLE TASKS (
 ```
 
 ## Installation and Setup
+
 1. **Clone the Repository**
+
    ```sh
    git clone https://github.com/Yousefa7medmaher/mvc-todoapp.git
    cd mvc-todoapp
    ```
 
 2. **Install Dependencies**
+
    ```sh
    npm install
    ```
 
 3. **Configure the Database**
+
    - Make sure you have MySQL installed.
    - Create the database using the schema provided above.
 
 4. **Run the Application**
+
    ```sh
    npm start
    ```
 
 5. **Test API Endpoints**
+
    - Use Postman or a similar tool to send requests to the API.
 
-## Future Enhancements
-- User authentication & authorization.
-- Task categorization and prioritization.
-- Notifications and reminders for tasks.
-- Frontend interface using React or Vue.js.
-
-## Contributing
-Feel free to fork this repository and submit pull requests. Any contributions are appreciated!
+## &#x20;
 
 ## Contact
+
 - **GitHub:** [Yousefa7medmaher](https://github.com/Yousefa7medmaher)
-- **Email:** ya1770620@gmail.com
+- **Email:** [ya1770620@gmail.com](mailto\:ya1770620@gmail.com)
 
