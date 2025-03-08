@@ -8,6 +8,7 @@ This project is a **To-Do List Application** built using the **MVC (Model-View-C
 - Update existing tasks.
 - Retrieve a specific task by ID.
 - Get all tasks stored in the database.
+- Delete existing tasks.
 - Mark tasks as completed.
 
 ## Technologies Used
