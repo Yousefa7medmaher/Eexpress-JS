@@ -133,4 +133,35 @@ export const CompleteTask = async (req, res, next) => {
 };
 
 
-export default { AddTask, UpdateTask, GetAllTasks, GetTaskById ,CompleteTask};
+export const DeleteTask = async (req, res, next) => {
+    try {
+        const { id } = req.body;
+
+        if (!id) {
+            return res.status(400).json({
+                success: false,
+                message: "Task ID is required"
+            });
+        }
+
+        const Delete_Query = 'DELETE FROM TASKS WHERE ID = ?';
+        const [result] = await db.execute(Delete_Query, [id]);
+
+        if (result.affectedRows > 0) {
+            return res.status(200).json({
+                success: true,
+                message: "Task deleted successfully"
+            });
+        } else {
+            return res.status(404).json({
+                success: false,
+                message: `No task found with ID ${id}`
+            });
+        }
+    } catch (err) {
+        next(err);
+    }
+};
+
+
+export default { AddTask, UpdateTask, GetAllTasks, GetTaskById ,CompleteTask , DeleteTask};
