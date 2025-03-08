@@ -35,7 +35,7 @@ CREATE TABLE TASKS (
 ## API Endpoints
 
 ### 1. Add a Task
-**Endpoint:** `POST /tasks/add`
+**Endpoint:** `POST http://localhost:5000/todolist/addtask `
 
 #### Request Body
 ```json
@@ -55,7 +55,7 @@ CREATE TABLE TASKS (
 ```
 
 ### 2. Update a Task
-**Endpoint:** `PUT /tasks/update`
+**Endpoint:** `PUT  http://localhost:5000/todolist/UpdateTask `
 
 #### Request Body
 ```json
@@ -94,7 +94,7 @@ CREATE TABLE TASKS (
 ```
 
 ### 4. Get All Tasks
-**Endpoint:** `GET /tasks`
+**Endpoint:** `GET  http://localhost:5000/todolist/GetAllTasks `
 
 #### Response
 ```json
