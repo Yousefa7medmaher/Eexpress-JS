@@ -2,6 +2,9 @@
 
 This project implements user authentication with login and registration functionality using JWT for secure access control.
 
+![DesignSystem](Design_System.png)
+[To get this system Design in draw.io you can use this file ](JWT.drawio)
+
 ## Features
 - User registration with email, username, phone, and password
 - Secure password hashing using bcrypt
