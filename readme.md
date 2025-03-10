@@ -160,9 +160,5 @@ DB_PASS=your_db_password
 DB_NAME=your_db_name
 ```
 
-## Contact
-For support, contact: jooahmed@example.com
-
-## License
-MIT License
-
+ 
+ 
