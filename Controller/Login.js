@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { sendResponse } from '../utils/helpers.js';
+import { logUserActivity } from '../controllers/activityController.js';
 
 dotenv.config();
 
@@ -34,14 +35,18 @@ export const login = async (req, res, next) => {
             return next(new Error("JWT_SECRET is not defined in environment variables"));
         }
 
-        //Create Token 
+ 
         const token = jwt.sign(
             { id: user.id, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );
 
-        // send response with token 
+      
+        const ip = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        const userAgent = req.headers['user-agent'] || 'Unknown';
+        await logUserActivity(user.id, 'LOGIN', 'User logged in successfully', ip, userAgent);
+ 
         return sendResponse(res, 200, true, "Login successful", {
             token,
             user: {

@@ -14,14 +14,7 @@ import { validateEmail, validatePassword, validatePhone } from '../utils/validat
  */
 export const register = async (req, res, next) => {
   try {
-    const { 
-      username, 
-      email, 
-      phone, 
-      password_hash, 
-      profile_image, 
-      auth_type = 'local' // Default value
-    } = req.body;
+    const { username, email, phone, password_hash } = req.body;
     
     // Required field validation
     if (!username?.trim() || !email?.trim() || !phone?.trim() || !password_hash) {
@@ -71,22 +64,21 @@ export const register = async (req, res, next) => {
       const hashedPassword = await bcrypt.hash(password_hash, SALT_ROUNDS);
       
       // Default values
-      const defaultProfileImage = profile_image || 'default.jpg';
-      const userRole = 'user';
-      const userStatus = 'active';
+      const userRole = 'customer'; // Default role
+      const userStatus = 'active'; // Default status
       const now = new Date();
       
       // Insert user into database
-      await connection.query(queries.insertdataTouserTable, [
+      await connection.query(`
+        INSERT INTO users (username, email, phone, password_hash, role, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `, [
         username.trim(),
         email.toLowerCase().trim(),
         phone.trim(),
         hashedPassword,
-        defaultProfileImage,
         userRole,
         userStatus,
-        auth_type,
-        now,
         now
       ]);
       
