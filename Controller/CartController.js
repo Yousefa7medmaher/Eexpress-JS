@@ -10,14 +10,11 @@ export const addToCart = async (req, res, next) => {
             return sendResponse(res, 400, false, "Invalid input. Please provide valid user_id, product_id, and quantity.");
         }
 
- 
         const [existing] = await db.query(queries.getCartItem, [user_id, product_id]);
 
         if (existing.length > 0) {
-  
             await db.query(queries.updateCartItem, [quantity, user_id, product_id]);
         } else {
-          
             await db.query(queries.insertCartItem, [user_id, product_id, quantity]);
         }
 
@@ -29,7 +26,7 @@ export const addToCart = async (req, res, next) => {
 
 export const getCartItems = async (req, res, next) => {
     try {
-        const { user_id } = req.params;
+        const { user_id } = req.body;
 
         if (!user_id) {
             return sendResponse(res, 400, false, "Invalid user ID.");
@@ -106,5 +103,6 @@ export const clearCart = async (req, res, next) => {
         next(err);
     }
 };
+
 
 export default { addToCart, getCartItems, updateCartItem, removeCartItem, clearCart };
