@@ -65,22 +65,7 @@ CREATE TABLE users (
 );
 ```
 
-### 📂 Table: `customers`
-```sql
-CREATE TABLE customers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    phone VARCHAR(20),
-    password_hash VARCHAR(255) NOT NULL,
-    profile_image VARCHAR(255),
-    role ENUM('user','admin') NOT NULL DEFAULT 'user',
-    status ENUM('active','inactive','banned') NOT NULL DEFAULT 'active',
-    auth_type ENUM('local','google','facebook') NOT NULL DEFAULT 'local',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-```
+ 
 
 ## 🎯 Best Practices Used
 - ✅ **Separation of Concerns** - Organized structure with different modules.
