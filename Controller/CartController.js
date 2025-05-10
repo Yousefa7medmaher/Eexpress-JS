@@ -26,7 +26,7 @@ export const addToCart = async (req, res, next) => {
 
 export const getCartItems = async (req, res, next) => {
     try {
-        const { user_id } = req.body;
+        const { user_id } = req.params;
 
         if (!user_id) {
             return sendResponse(res, 400, false, "Invalid user ID.");
@@ -38,7 +38,14 @@ export const getCartItems = async (req, res, next) => {
             return sendResponse(res, 404, false, "Cart is empty.");
         }
 
-        sendResponse(res, 200, true, "Cart items retrieved successfully.", cartItems);
+        // (اختياري) حساب إجمالي سلة المشتريات
+        const totalCartPrice = cartItems.reduce((sum, item) => sum + item.total_price, 0);
+
+        sendResponse(res, 200, true, "Cart items retrieved successfully.", {
+            items: cartItems,
+            total_price: totalCartPrice
+        });
+
     } catch (err) {
         next(err);
     }

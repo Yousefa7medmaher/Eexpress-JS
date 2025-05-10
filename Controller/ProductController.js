@@ -38,19 +38,19 @@ export const showSpecificProduct = async (req, res, next) => {
 
 export const addProduct = async (req, res, next) => {
     try {
-        const { name, price, description, stock } = req.body;
+        const { name, price, description, stock, category_id, image_url } = req.body;
 
-        if (!name || !price || !description || !stock) {
+        if (!name || !price || !description || !stock || !category_id || !image_url) {
             return sendResponse(res, 400, false, "Please provide all required fields.");
         }
 
-        const [data] = await db.query(queries.insertProduct, [name, price, description, stock]);
+        const [data] = await db.query(queries.insertProduct, [name, description, price, stock, category_id, image_url]);
 
         if (data.affectedRows === 0) {
             return sendResponse(res, 500, false, "Failed to insert product.");
         }
 
-        sendResponse(res, 201, true, "Product added successfully.", { id: data.insertId, name, price, description, stock });
+        sendResponse(res, 201, true, "Product added successfully.", { id: data.insertId, name, price, description, stock, category_id, image_url });
     } catch (err) {
         next(err);
     }
@@ -59,19 +59,19 @@ export const addProduct = async (req, res, next) => {
 export const updateProduct = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { name, price, description, stock } = req.body;
+        const { name, price, description, stock, category_id, image_url } = req.body;
 
-        if (!id || !name || !price || !description || !stock) {
+        if (!id || !name || !price || !description || !stock || !category_id || !image_url) {
             return sendResponse(res, 400, false, "Please provide all required fields.");
         }
 
-        const [result] = await db.query(queries.updateProduct, [name, price, description, stock, id]);
+        const [result] = await db.query(queries.updateProduct, [name, description, price, stock, category_id, image_url, id]);
 
         if (result.affectedRows === 0) {
             return sendResponse(res, 404, false, `No product found with ID: ${id}`);
         }
 
-        sendResponse(res, 200, true, "Product updated successfully.", { id, name, price, description, stock });
+        sendResponse(res, 200, true, "Product updated successfully.", { id, name, price, description, stock, category_id, image_url });
     } catch (err) {
         next(err);
     }

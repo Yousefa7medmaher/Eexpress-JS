@@ -35,12 +35,12 @@ export const queries = {
         WHERE id = ?
     `,
     insertProduct: `
-        INSERT INTO products (name, description, price, stock) 
-        VALUES (?, ?, ?, ?)
+        INSERT INTO products (name, description, price, stock, category_id, image_url) 
+        VALUES (?, ?, ?, ?, ?, ?)
     `,
     updateProduct: `
         UPDATE products 
-        SET name = ?, description = ?, price = ?, stock = ? 
+        SET name = ?, description = ?, price = ?, stock = ?, category_id = ?, image_url = ? 
         WHERE id = ?
     `,
     deleteProduct: `
@@ -65,17 +65,37 @@ export const queries = {
         WHERE id = ?
     `,
     getAllOrders: `
-        SELECT o.id, o.user_id, o.total_price, o.status, o.created_at, 
-               oi.product_id, oi.quantity, oi.subtotal 
-        FROM orders o
-        JOIN order_items oi ON o.id = oi.order_id
-    `,
+    SELECT 
+    o.id AS order_id,
+    u.username AS username,
+    p.name AS product_name,
+    oi.quantity,
+    oi.subtotal,
+    o.total_price
+FROM orders o
+JOIN users u ON o.user_id = u.id
+JOIN order_items oi ON o.id = oi.order_id
+JOIN products p ON oi.product_id = p.id
+ORDER BY o.id;
+
+
+`,
     getOrderById: `
-        SELECT o.id, o.user_id, o.total_price, o.status, o.created_at, 
-               oi.product_id, oi.quantity, oi.subtotal 
-        FROM orders o
-        JOIN order_items oi ON o.id = oi.order_id
-        WHERE o.id = ?
+        SELECT 
+    o.id,
+    o.user_id,
+    o.total_price,
+    o.status,
+    o.created_at,
+    p.id AS product_id,
+    p.name AS product_name,
+    oi.quantity,
+    oi.subtotal
+FROM orders o
+JOIN order_items oi ON o.id = oi.order_id
+JOIN products p ON oi.product_id = p.id
+WHERE o.id = ?;
+
     `,
     updateOrderStatus: `
         UPDATE orders 
@@ -102,11 +122,17 @@ export const queries = {
         DELETE FROM cart 
         WHERE user_id = ? AND product_id = ?
     `,
-    getUserCart: `
-        SELECT * 
-        FROM cart 
-        WHERE user_id = ?
-    `,
+getUserCart: `
+    SELECT 
+        c.product_id,
+        p.name AS product_name,
+        p.price,
+        c.quantity,
+        (p.price * c.quantity) AS total_price
+    FROM cart c
+    JOIN products p ON c.product_id = p.id
+    WHERE c.user_id = ?
+` ,
     clearUserCart: `
         DELETE FROM cart 
         WHERE user_id = ?

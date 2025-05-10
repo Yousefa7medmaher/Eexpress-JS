@@ -43,8 +43,8 @@ router.put('/orders/:id/status', authenticateToken, authorizeRole('admin'), upda
 
 // Cart Routes
 router.post('/cart', authenticateToken, addToCart);
-router.get('/cart', authenticateToken, getCartItems);
-router.delete('/cart/:id', authenticateToken, removeCartItem);
+router.get('/cart/:user_id', authenticateToken, getCartItems);
+router.delete('/cart/:user_id/:product_id', authenticateToken, removeCartItem);
 router.delete('/cart/:user_id', authenticateToken, clearCart);
 
 // Auth Routes

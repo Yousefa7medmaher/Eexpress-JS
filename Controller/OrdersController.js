@@ -31,7 +31,26 @@ export const getAllOrders = async (req, res, next) => {
             return sendResponse(res, 404, false, "No orders found.");
         }
 
-        sendResponse(res, 200, true, "Orders retrieved successfully.", orders);
+        const groupedOrders = {};
+
+        orders.forEach(order => {
+            const { order_id, username, product_name, quantity, subtotal, total_price } = order;
+
+            if (!groupedOrders[order_id]) {
+                groupedOrders[order_id] = {
+                    order_id,
+                    username,
+                    total_price,
+                    items: []
+                };
+            }
+
+            groupedOrders[order_id].items.push({ product_name, quantity, subtotal });
+        });
+
+        const groupedOrdersArray = Object.values(groupedOrders);
+
+        sendResponse(res, 200, true, "Orders retrieved successfully.", groupedOrdersArray);
     } catch (err) {
         next(err);
     }
@@ -39,23 +58,37 @@ export const getAllOrders = async (req, res, next) => {
 
 export const getOrderById = async (req, res, next) => {
     try {
-        const { id } = req.params;
+        const orderId = req.params.id;
+        const [orderItems] = await db.query(queries.getOrderById, [orderId]);
 
-        if (!id) {
-            return sendResponse(res, 400, false, "Invalid order ID provided.");
+        if (orderItems.length === 0) {
+            return sendResponse(res, 404, false, `No order found with ID: ${orderId}`);
         }
 
-        const [order] = await db.query(queries.getOrderById, [id]);
+        const { id, user_id, total_price, status, created_at } = orderItems[0];
 
-        if (order.length === 0) {
-            return sendResponse(res, 404, false, "Order not found.");
-        }
+        const items = orderItems.map(item => ({
+            product_id: item.product_id,
+            product_name: item.product_name,
+            quantity: item.quantity,
+            subtotal: item.subtotal
+        }));
 
-        sendResponse(res, 200, true, `Order found with ID: ${id}`, order[0]);
+        const order = {
+            id,
+            user_id,
+            total_price,
+            status,
+            created_at,
+            items
+        };
+
+        sendResponse(res, 200, true, `Order found with ID: ${orderId}`, order);
     } catch (err) {
         next(err);
     }
 };
+
 
 export const updateOrderStatus = async (req, res, next) => {
     try {
