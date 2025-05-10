@@ -25,7 +25,7 @@ import {
 import { login } from '../Controller/Login.js'; 
 import { register } from '../Controller/register.js';  
 import { authenticateToken, authorizeRole } from '../middleware/auth.js'; 
-
+// import {createPayment} from '../Controller/paymentController.js'
 const router = express.Router();
 
 // Product Routes
@@ -50,5 +50,9 @@ router.delete('/cart/:user_id', authenticateToken, clearCart);
 // Auth Routes
 router.post('/login', login);
 router.post('/register', register);
+
+
+// Payment Routes
+// router.post('/payment', authenticateToken, createPayment);
 
 export default router;
