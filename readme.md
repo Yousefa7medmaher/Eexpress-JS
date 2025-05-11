@@ -1,4 +1,4 @@
-# Basic E-commerce Backend (Node.js/Express.js)
+# E-commerce Backend (Node.js/Express.js)
 
 ## Project Overview
 A robust backend API for an e-commerce platform built with Node.js, Express.js, and MySQL. This backend provides essential e-commerce functionalities with a clean, organized architecture.
