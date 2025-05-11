@@ -244,6 +244,3 @@ Each API endpoint has a test URL provided for easy testing using tools like Post
 
 ## Author
 Yousef Ahmed Maher
-
-## License
-[Your license information here]
